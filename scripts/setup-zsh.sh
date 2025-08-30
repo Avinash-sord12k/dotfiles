@@ -16,7 +16,7 @@ chsh -s $(which zsh)
 echo "✨ Installing Oh My Zsh..."
 export RUNZSH=no
 export CHSH=no
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+sudo sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 
