@@ -9,13 +9,13 @@ curl -fsSL https://raw.githubusercontent.com/Avinash-sord12k/dotfiles/refs/heads
 ## uninstall - remove all active configs
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Avinash-sord12k/dotfiles/refs/heads/main/uninstall.sh | bash -s uninstall
+curl -fsSL https://raw.githubusercontent.com/Avinash-sord12k/dotfiles/refs/heads/main/setup.sh | bash -s uninstall
 ```
 
 ## cleanup - remove all files and source repo
-
+ 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Avinash-sord12k/dotfiles/refs/heads/main/uninstall.sh | bash -s cleanup
+curl -fsSL https://raw.githubusercontent.com/Avinash-sord12k/dotfiles/refs/heads/main/setup.sh | bash -s cleanup
 ```
 ---
 # manual setup
