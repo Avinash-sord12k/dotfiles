@@ -82,6 +82,22 @@ uninstall_links() {
   log "Uninstall complete."
 }
 
+cleanup() {
+  log "Starting cleanup..."
+
+  if [ -d "$DOTFILES_DIR" ]; then
+    log "Removing stow links..."
+    uninstall_links || true
+
+    log "Removing dotfiles repository..."
+    rm -rf "$DOTFILES_DIR"
+  else
+    log "Dotfiles directory not found, skipping."
+  fi
+
+  log "Cleanup complete."
+}
+
 # ==============================
 # ENTRY
 # ==============================
@@ -95,6 +111,10 @@ case "${1:-install}" in
   uninstall)
     ensure_stow
     uninstall_links
+    ;;
+  cleanup)
+    ensure_stow
+    cleanup
     ;;
   *)
     echo "Usage: $0 [install|uninstall]"
