@@ -1,0 +1,44 @@
+local caps = vim.lsp.protocol.make_client_capabilities()
+caps = require("cmp_nvim_lsp").default_capabilities(caps)
+
+vim.lsp.config("clangd", {
+  capabilities = caps,
+})
+vim.lsp.enable("clangd")
+
+-- JavaScript / TypeScript
+vim.lsp.config("ts_ls", {
+  capabilities = caps,
+})
+vim.lsp.enable("ts_ls")
+
+-- HTML
+vim.lsp.config("html", {
+  capabilities = caps,
+})
+vim.lsp.enable("html")
+
+-- CSS
+vim.lsp.config("cssls", {
+  capabilities = caps,
+})
+vim.lsp.enable("cssls")
+
+-- Tailwind CSS
+vim.lsp.config("tailwindcss", {
+  capabilities = caps,
+})
+vim.lsp.enable("tailwindcss")
+
+-- Lua (Neovim config)
+vim.lsp.config("lua_ls", {
+  capabilities = caps,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
+vim.lsp.enable("lua_ls")

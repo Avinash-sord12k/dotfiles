@@ -11,6 +11,21 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Load modular configs
-[[ -f ~/aliases.zsh ]] && source ~/aliases.zsh
-[[ -f ~/exports.zsh ]] && source ~/exports.zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(direnv hook zsh)"
+
+alias code='flatpak run com.visualstudio.code'
+alias nvim='nvim --startuptime /tmp/nvim-st.log'
+
+fortune | cowsay | lolcat
+
+# pnpm
+export PNPM_HOME="/home/a/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
