@@ -1,3 +1,1 @@
-stow -vt ~ nvim
-stow -vt ~ tmux
-stow -vt ~ zsh
+stow -vt ~ nvim tmux zsh kitty

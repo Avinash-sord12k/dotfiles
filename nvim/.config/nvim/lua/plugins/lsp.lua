@@ -37,15 +37,19 @@ return {
         "bashls",
         "jsonls",
         "tailwindcss",
+        "omnisharp"
       },
       automatic_enable = true,
     })
+
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     vim.lsp.config("*", {
       capabilities = require("cmp_nvim_lsp").default_capabilities(),
     })
 
     vim.lsp.config("lua_ls", {
+      capabilities = capabilities,
       settings = {
         Lua = {
           diagnostics = {
@@ -56,6 +60,7 @@ return {
     })
 
     vim.lsp.config("tailwindcss", {
+      capabilities = capabilities,
       filetypes = {
         "html",
         "css",
@@ -67,6 +72,15 @@ return {
         "vue",
       },
     })
+
+    vim.lsp.config("omnisharp", {
+      capabilities = capabilities,
+      filetypes = { "cs", "vb" },
+      enable_roslyn_analyzers = true,
+      organize_imports_on_format = true,
+      enable_import_completion = true,
+    })
+
   end,
 }
 
