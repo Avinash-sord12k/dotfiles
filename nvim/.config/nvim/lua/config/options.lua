@@ -12,3 +12,17 @@ vim.opt.relativenumber = true
 
 vim.o.cmdheight = 0
 -- vim.cmd.colorscheme "catppuccin"
+
+vim.diagnostic.config({
+  virtual_text = {
+    spacing = 4,
+    prefix = "●",
+    severity = { min = vim.diagnostic.severity.WARN },
+  },
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  }
+})

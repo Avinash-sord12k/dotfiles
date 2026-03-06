@@ -20,7 +20,7 @@ eval "$(direnv hook zsh)"
 alias code='flatpak run com.visualstudio.code'
 alias nvim='nvim --startuptime /tmp/nvim-st.log'
 
-fortune | cowsay | lolcat
+fortune | cowsay -f tux | lolcat
 
 # pnpm
 export PNPM_HOME="/home/a/.local/share/pnpm"
