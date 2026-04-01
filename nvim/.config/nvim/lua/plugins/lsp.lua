@@ -73,6 +73,16 @@ return {
       },
     })
 
+    vim.lsp.config("ts_ls", {
+      capabilities = capabilities,
+      root_dir = function(fname)
+        -- Prefer nearest tsconfig.json (package-level) for monorepo support
+        return vim.fs.root(fname, { "tsconfig.json" })
+          or vim.fs.root(fname, { "package.json", "jsconfig.json", ".git" })
+      end,
+      single_file_support = false,
+    })
+
     vim.lsp.config("omnisharp", {
       capabilities = capabilities,
       filetypes = { "cs", "vb" },

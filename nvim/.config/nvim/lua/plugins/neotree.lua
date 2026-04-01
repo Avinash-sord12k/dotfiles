@@ -10,16 +10,31 @@ return {
   config = function()
     require("neo-tree").setup({
       window = {
-        position = "right", -- "left" | "right" | "float" | "current"
+        position = "right",
       },
+
       filesystem = {
         filtered_items = {
-          visible = true,        -- hidden + filtered files dikhayega
-          hide_dotfiles = false, -- dotfiles mat chhupao
-          hide_gitignored = false, -- gitignored files bhi dikhao
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
+
+        -- 🔥 AUTO FOLLOW CURRENT FILE (like VSCode)
+        follow_current_file = {
+          enabled = true,
         },
       },
     })
+
+    -- 🔥 KEYMAP: Reveal current file + focus Neo-tree
+    vim.keymap.set("n", "<leader>ee", function()
+      require("neo-tree.command").execute({
+        action = "focus",
+        source = "filesystem",
+        position = "right",
+        reveal = true,
+      })
+    end, { desc = "Reveal current file in Neo-tree" })
   end,
 }
-

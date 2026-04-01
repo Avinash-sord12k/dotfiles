@@ -1,5 +1,6 @@
 alias code='flatpak run com.visualstudio.code'
 alias nvim='nvim --startuptime /tmp/nvim-st.log'
+alias copy='xclip -selection clipboard'
 
 lanmsg() {
   ssh x@192.168.0.110 \
@@ -39,3 +40,9 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 eval "$(direnv hook zsh)"
 
 fortune | cowsay -f tux | lolcat
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/a/google-cloud-sdk/path.zsh.inc' ]; then . '/home/a/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/a/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/a/google-cloud-sdk/completion.zsh.inc'; fi
