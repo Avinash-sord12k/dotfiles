@@ -75,12 +75,11 @@ return {
 
     vim.lsp.config("ts_ls", {
       capabilities = capabilities,
-      root_dir = function(fname)
-        -- Prefer nearest tsconfig.json (package-level) for monorepo support
-        return vim.fs.root(fname, { "tsconfig.json" })
-          or vim.fs.root(fname, { "package.json", "jsconfig.json", ".git" })
-      end,
-      single_file_support = false,
+      -- root_markers replaces lspconfig's root_dir function in the native API.
+      -- Nearest ancestor with tsconfig.json wins → each monorepo package gets
+      -- its own ts_ls instance. Falls back to package.json / .git.
+      root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git" },
+      workspace_required = true, -- replaces single_file_support = false
     })
 
     vim.lsp.config("omnisharp", {
@@ -90,6 +89,17 @@ return {
       organize_imports_on_format = true,
       enable_import_completion = true,
     })
+
+    -- Explicitly enable servers so they attach even if automatic_enable is
+    -- not supported by the installed mason-lspconfig version.
+    local servers = {
+      "ts_ls", "eslint", "lua_ls", "pyright",
+      "dockerls", "docker_compose_language_service",
+      "yamlls", "bashls", "jsonls", "tailwindcss", "omnisharp",
+    }
+    for _, server in ipairs(servers) do
+      vim.lsp.enable(server)
+    end
 
   end,
 }
