@@ -75,11 +75,19 @@ return {
 
     vim.lsp.config("ts_ls", {
       capabilities = capabilities,
-      -- root_markers replaces lspconfig's root_dir function in the native API.
-      -- Nearest ancestor with tsconfig.json wins → each monorepo package gets
-      -- its own ts_ls instance. Falls back to package.json / .git.
-      root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git" },
-      workspace_required = true, -- replaces single_file_support = false
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+      },
+      settings = {
+        typescript = {
+          tsserver = {
+            maxTsServerMemory = 4096,
+          },
+        },
+      },
     })
 
     vim.lsp.config("omnisharp", {
